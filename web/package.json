@@ -1,5 +1,33 @@
 {
+  "name": "package",
+  "version": "1.0.0",
+  "main": "index.js",
   "scripts": {
-    "build": "webpack"
-  }
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erikterwiel/MountainViews.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erikterwiel/MountainViews/issues"
+  },
+  "homepage": "https://github.com/erikterwiel/MountainViews#readme",
+  "dependencies": {
+    "amazon-cognito-identity-js": "^1.31.0",
+    "aws-sdk": "^2.185.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "couchbase": "^2.4.3",
+    "express": "^4.16.2",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "json-loader": "^0.5.7",
+    "webpack": "^3.10.0"
+  },
+  "description": ""
 }
