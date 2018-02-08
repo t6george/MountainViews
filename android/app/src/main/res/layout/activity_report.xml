@@ -12,7 +12,7 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:orientation="horizontal"
-            android:background="@color/mvStatusBar">
+            android:background="@color/mvPrimary">
             <ImageView
                 android:layout_width="32dp"
                 android:layout_height="32dp"

@@ -31,7 +31,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDu-nziNgRszYEdWPI6V1BehNTzNvwUyMw" />
 
-        <activity android:name=".LoginActivity">
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/splash_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

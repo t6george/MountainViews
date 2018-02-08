@@ -47,7 +47,7 @@ public class TripActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 if (mActions > 2) {
-//                    new SendNotification().execute();
+                    new SendNotification().execute();
                 } else {
                     mActions = 0;
                 }
