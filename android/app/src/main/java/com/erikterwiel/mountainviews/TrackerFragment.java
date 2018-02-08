@@ -95,7 +95,6 @@ public class TrackerFragment extends Fragment implements OnMapReadyCallback {
         MapsInitializer.initialize(getContext());
         mGoogleMap = googleMap;
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(39.951883, -75.191222), 20));
         new PullUsers().execute();
     }
 
@@ -129,6 +128,10 @@ public class TrackerFragment extends Fragment implements OnMapReadyCallback {
         @Override
         protected void onPostExecute(Void result) {
             for (User user : mUsers) {
+                if (user.getUsername().equals("autouser")) {
+                    mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                            new LatLng(user.getLatitude(), user.getLongitude()), 15));
+                }
                 Geocoder gcd = new Geocoder(getActivity(), Locale.getDefault());
                 try {
                     List<Address> addresses = gcd.getFromLocation(user.getLatitude(), user.getLongitude(), 1);

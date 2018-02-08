@@ -47,7 +47,7 @@ public class FeedFragment extends Fragment {
     private View mPhotoView;
     private View mReportView;
     private LinearLayout.LayoutParams mParams;
-    private int mIndex = 1;
+    private int mIndex;
 
     private List<Recent> mRecents;
     private Photo mPhoto;
@@ -123,6 +123,7 @@ public class FeedFragment extends Fragment {
         protected Void doInBackground(Void... inputs) {
             DynamoDBScanExpression scan = new DynamoDBScanExpression();
             mRecents = mMapper.scan(Recent.class, scan);
+            mIndex = 1;
             return null;
         }
 
