@@ -15,6 +15,8 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.s3.AmazonS3Client;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 
 public class ReportActivity extends AppCompatActivity {
@@ -26,16 +28,22 @@ public class ReportActivity extends AppCompatActivity {
     private DynamoDBMapper mMapper;
     private TransferUtility mTransferUtility;
 
+    private TextView mUsername;
+    private TextView mTitle;
+    private TextView mLocation;
+    private RecyclerView mRecycler;
+    private TextView mReportText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
 
-        TextView userName = (TextView) findViewById(R.id.report_username);
-        TextView title = (TextView) findViewById(R.id.report_title);
-        TextView location = (TextView) findViewById(R.id.report_location);
-        RecyclerView recycler = (RecyclerView) findViewById(R.id.report_recycler);
-        TextView report = (TextView) findViewById(R.id.report_body);
+        mUsername = (TextView) findViewById(R.id.report_username);
+        mTitle = (TextView) findViewById(R.id.report_title);
+        mLocation = (TextView) findViewById(R.id.report_location);
+        mRecycler = (RecyclerView) findViewById(R.id.report_recycler);
+        mReportText = (TextView) findViewById(R.id.report_body);
         mReport = new Report();
 
         CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
@@ -48,14 +56,7 @@ public class ReportActivity extends AppCompatActivity {
 
         new PullReport().execute();
 
-        try {
-            Thread.sleep(4000);
-        } catch (Exception ex) {}
 
-        userName.setText(getIntent().getStringExtra("username") + " - Trip Report");
-        title.setText(mReport.getTitle() + " - " + mReport.getDate());
-        location.setText(mReport.getLocation() + " - " + mReport.getDistance());
-        report.setText(mReport.getReport());
     }
 
     private class PullReport extends AsyncTask<Void, Void, Void> {
@@ -63,6 +64,14 @@ public class ReportActivity extends AppCompatActivity {
         protected Void doInBackground(Void... inputs) {
             mReport = mMapper.load(Report.class, getIntent().getStringExtra("report"));
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            mUsername.setText(getIntent().getStringExtra("username") + " - Trip Report");
+            mTitle.setText(mReport.getTitle() + " - " + mReport.getDate());
+            mLocation.setText(mReport.getLocation() + " - " + mReport.getDistance());
+            mReportText.setText(mReport.getReport());
         }
     }
 
